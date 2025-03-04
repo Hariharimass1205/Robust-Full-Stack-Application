@@ -1,3 +1,4 @@
+import { IUserData } from "@/utils/types";
 import axios from "axios"
 
 export const axiosInstance = axios.create({
@@ -18,7 +19,7 @@ export const handleApiError = (error: unknown): string => {
     }
   };
 
-export const submitData = async (data:{}) => {
+export const submitData = async (data:IUserData) => {
     try {
         const res = await axiosInstance.post("/",data);
         return res.data;

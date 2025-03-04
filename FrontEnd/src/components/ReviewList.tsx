@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { fetchDfetchDatafromBackata } from "@/service/api";
 import Image from "next/image";
 import bg from "../../public/240_F_287113569_12KPHNVT0eDYos0LvgaZsbuy5H2xf1BW.jpg";
+import { IUserData } from "@/utils/types";
 
 export default function ReviewList() {
   const [data, setData] = useState([]);
@@ -65,7 +66,7 @@ export default function ReviewList() {
               </tr>
             </thead>
             <tbody>
-              {currentData.map((item: any, index) => (
+              {currentData.map((item: IUserData, index:number) => (
                 <tr key={index} className="border">
                   <td className="border p-3 text-center">
                     {indexOfFirstItem + index + 1}

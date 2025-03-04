@@ -1,23 +1,24 @@
 "use client";
 import Image from "next/image";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import bg from "../../public/240_F_287113569_12KPHNVT0eDYos0LvgaZsbuy5H2xf1BW.jpg";
 import { submitData } from "@/service/api";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css"; 
+import { IUserData } from "@/utils/types";
 
-export default function EnterReview({ stateChange }: any) {
-  let [limit, setLimit] = useState(false);
+export default function EnterReview({ stateChange }:{stateChange:(value:boolean)=>void} ) {
+  const [limit, setLimit] = useState<boolean>(false);
 
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm<IUserData>();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit:SubmitHandler<IUserData> = async (data: IUserData) => {
     const res = await submitData(data);
     console.log(res)
     if (res.limit) {
@@ -68,8 +69,8 @@ export default function EnterReview({ stateChange }: any) {
 
             <div>
               <label className="block font-medium">How often do you use this app?</label>
-              <select {...register("usage", { required: "This field is required" })} className="w-full p-2 border rounded">
-                <option value="">Select an option</option>
+              <select {...register("usage", { required: "This field is required" })} className="w-full p-2 border rounded focus:bg-amber-500">
+                <option  className="active:bg-amber-500" value="">Select an option</option>
                 <option value="Daily">Daily</option>
                 <option value="Weekly">Weekly</option>
                 <option value="Monthly">Monthly</option>
