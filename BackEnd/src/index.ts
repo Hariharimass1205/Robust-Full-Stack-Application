@@ -10,7 +10,7 @@ const app = express()
 app.use(express.json())
 
 app.use(cors({
-    origin: "http://localhost:3001",
+    origin: "robust-full-stack-application.vercel.app",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true

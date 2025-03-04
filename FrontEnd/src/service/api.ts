@@ -2,7 +2,7 @@ import { IUserData } from "@/utils/types";
 import axios from "axios"
 
 export const axiosInstance = axios.create({
-    baseURL: "http://localhost:3000", 
+    baseURL: "https://robust-full-stack-application.onrender.com", 
     headers: {
         "Content-Type": "application/json",
     },
