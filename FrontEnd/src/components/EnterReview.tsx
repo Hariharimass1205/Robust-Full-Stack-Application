@@ -20,7 +20,7 @@ export default function EnterReview({ stateChange }:{stateChange:(value:boolean)
 
   const onSubmit:SubmitHandler<IUserData> = async (data: IUserData) => {
     const res = await submitData(data);
-    console.log(res)
+    //console.log(res)
     if (res.limit) {
       setLimit(true);
       setTimeout(() => {
@@ -115,14 +115,16 @@ export default function EnterReview({ stateChange }:{stateChange:(value:boolean)
             </div>
 
             <div>
-              <label className="block font-medium">Enter your birthday:</label>
-              <input
-                type="date"
-                {...register("birthday", { required: "This field is required" })}
-                className="w-full p-2 border rounded"
+             <label className="block font-medium">Enter your birthday:</label>
+             <input
+             type="date"
+             {...register("birthday", { required: "This field is required" })}
+             className="w-full p-2 border rounded"
+              max={new Date().toISOString().split("T")[0]} // Restricts to today or earlier
               />
               {errors.birthday && <small className="text-red-500">{String(errors.birthday.message)}</small>}
             </div>
+
 
             <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
               Submit
